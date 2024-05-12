@@ -1,0 +1,83 @@
+﻿@model LojaCD.Services.ViewModels.CDViewModel
+
+<h3>Alteração de CD</h3>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Titulo" class="control-label"></label>
+                <input asp-for="Titulo" class="form-control" />
+                <span asp-validation-for="Titulo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ArtistaId" class="control-label"></label>
+                <select asp-for="ArtistaId" class="form-control" asp-items="ViewBag.ArtistaId"></select>
+                <span asp-validation-for="ArtistaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GeneroMusicalId" class="control-label"></label>
+                <select asp-for="GeneroMusicalId" class="form-control" asp-items="ViewBag.GeneroMusicalId"></select>
+                <span asp-validation-for="GeneroMusicalId" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div>
+                        <div class="pull-left">
+                            <a asp-action="CreateMusica" asp-route-cdid="@Model.Id" title="Nova Musica" class="btn btn-warning">
+                                <span class="fas fa-edit">Nova Musica</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            Nome Musica
+                        </th>
+                        <th>
+                            Tempo
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Musicas)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Tempo)
+                            </td>
+                            <td>
+                                <a asp-action="EditMusica" asp-route-id="@item.Id" title="Editar" class="btn btn-warning">
+                                    <span class="fas fa-edit">Editar</span>
+                                </a>
+                                <a asp-action="DeleteMusica" asp-route-id="@item.Id" title="Deletar" class="btn btn-danger">
+                                    <span class="fas fa-trash-alt">Excluir</span>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="form-group">
+                <input type="submit" value="Salvar CD" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar para lista</a>
+</div>

@@ -1,0 +1,39 @@
+﻿@model LojaCD.Services.ViewModels.CDViewModel
+
+<h2>Cadastro de CD</h2>
+
+<form asp-action="Create">
+
+    <div class="form-horizontal">
+
+        <hr />
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="Titulo" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Titulo" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ArtistaId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="ArtistaId" class="form-control" asp-items="ViewBag.ArtistaId"> </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="GeneroMusicalId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="GeneroMusicalId" class="form-control" asp-items="ViewBag.GeneroMusicalId"> </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-info">Voltar para lista</a>
+            </div>
+        </div>
+    </div>
+</form>
